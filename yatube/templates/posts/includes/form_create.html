@@ -1,0 +1,34 @@
+<div class="card-body">
+    {% if is_edit %}
+      <form method="post" enctype="multipart/form-data" action="">
+    {% else %}
+      <form method="post" enctype="multipart/form-data" action="{% url 'posts:create_post' %}">
+    {% endif %}
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+     <div class="form-group row my-3 p-3">
+     <label for="id_text">
+       Текст поста
+       <span class="required text-danger" >*</span>                  
+     </label>
+      {{ form.text }}
+      <small id="id_text-help" class="form-text text-muted">
+       Текст нового поста
+     </small>  
+  </div>
+  {% if post.group %}  
+    <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
+  {% endif %}
+  <div class="form-group row my-3 p-3">
+     <label for="id_group">
+       Группа                
+     </label>
+     {{ form.group }}
+     <small id="id_group-help" class="form-text text-muted">
+       Группа, к которой будет относиться пост
+    </small>
+    <div class="form-group row my-3 p-3">
+      <label for="id_image">
+        Картинка                      
+      </label> 
+      <input type="file" name="image" accept="image/*" class="form-control" id="id_image">                     
+    </div>

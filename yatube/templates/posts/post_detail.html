@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load thumbnail %}
+<title>
+  {% block title %}Пост {{post.text|truncatewords:30}}{% endblock %}
+</title>
+{% block content %}
+      {% include 'posts/includes/post_list_detail.html' %}
+      {% if request.user.is_authenticated %}
+        {% if request.user == post.author %}
+          <a class="btn btn-primary" href="{% url 'posts:post_edit' post.id %}">
+            редактировать запись</a>
+        {% endif %}
+      {% endif %}
+      {% include 'posts/includes/add_comment.html' %}
+       </article>
+        {% if not forloop.last %}<hr>{% endif %}
+      {% endblock %}

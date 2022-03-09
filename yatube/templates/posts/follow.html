@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% load cache %}
+    {% block content %}
+    <div class="container py-5">       
+     <h1> Подписки</h1>
+     <div class="container py-5">   
+        {% include 'posts/includes/switcher.html' %}
+      {% for post in page_obj %}
+      {% include 'posts/includes/post_list.html' %}
+      {% if post.group %}   
+      <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
+      {% endif %}     
+      <hr>
+      <article>
+     {% endfor %}
+     {% include 'posts/includes/paginator.html' %}
+  {% endblock %}

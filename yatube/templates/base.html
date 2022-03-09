@@ -1,0 +1,18 @@
+
+<!DOCTYPE html> 
+<html lang="ru">   
+  {% include 'users/includes/head.html' %}
+  <body>       
+    <header>
+      {% include 'posts/includes/header.html' %}
+    </header>
+    <main>
+      {% block content %}
+        Контент не подвезли :(
+      {% endblock %}
+    </main>
+    <footer>
+      {% include 'posts/includes/footer.html' %} 
+    </footer>
+  </body>
+</html> 

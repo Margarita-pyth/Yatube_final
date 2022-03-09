@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Технологии{% endblock %}
+{% block content %}
+{% load static %}
+{% comment %} Колонки с отступом сверху и снизу {% endcomment %}
+<div class="row">
+    <div class="col" style="background: white;"><h3>Вот что я умею:<h3>
+        <p><ul>
+            <li>Могу написать программу для подсчета каллорий</li>
+            <li>Могу создать свой проект на Джанго</li>
+        </ul><p>
+            <img src="{% static 'img/prog.png'  %}"   width="270px">
+    </div>
+    <div class="col" style="background: white;"><h3>Изучая  Python научилась работать с:<h3>
+        <p><ul>
+            <li>функциями, исключениями</li>
+            <li>списками, кортежами, словарями</li>
+            <li>циклами, ветвлениями</li>
+        </ul><p>
+            <img src="{% static 'img/python.jpg'  %}"   width="270px">
+    </div>
+    <div class="col" style="background: white;"><h3> Изучая Django ознакомилась с:<h3>
+        <p><ul>
+            <li>основами ООП, базами данных</li>
+            <li>классами</li>
+            <li>декораторами</li>
+        </ul><p>
+            <img src="{% static 'img/django.png'  %}"   width="300px">
+    </div>
+  </div>
+
+  <div class="row">
+    <h1><img src="{% static 'img/noroot.png'  %}"   width="270px"></h1>
+    {% comment %}
+      Боковой блок со списком технологий 
+      Займет всю ширину блока на мобильном
+      и 25% при размерах экрана ≥768px
+    {% endcomment %}
+    <aside class="col-12 col-md-3">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+          Python
+        </li>
+        <li class="list-group-item">
+          Django
+        </li>
+      </ul>
+    </aside>
+    {% comment %}
+      Статья  
+      Займет всю ширину блока на мобильном
+      и 75% при размерах экрана ≥768px
+    {% endcomment %}
+    <article class="col-12 col-md-9">
+      <p>"Технологии"</p>
+    </article>
+  </div>
+  {% endblock %} 
+  
