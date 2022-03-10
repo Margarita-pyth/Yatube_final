@@ -1,12 +1,11 @@
 
-from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from posts.models import Post, Group
 from django.urls import reverse
 from posts.views import POSTS_PER_PAGE
+from posts.models import User
 
 POSTS_ON_SECOND_PAGE = 3
-User = get_user_model()
 
 
 class PaginatorTests(TestCase):

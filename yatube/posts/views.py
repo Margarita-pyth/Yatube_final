@@ -41,7 +41,7 @@ def profile(request, username):
     paginator = Paginator(post_list, POSTS_PER_PAGE)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    count = Post.objects.filter(author=author).count()
+    count = post_list.count()
     following = False
     if ((request.user.is_authenticated)
         and Follow.objects.filter(
@@ -58,7 +58,7 @@ def profile(request, username):
 
 
 def post_detail(request, post_id):
-    post = Post.objects.get(id=post_id)
+    post = get_object_or_404(Post, id=post_id)
     count = Post.objects.filter(author=post.author).count()
     comments = post.comments.all().filter(post_id=post_id)
     form_comments = CommentForm(request.POST or None)
@@ -85,7 +85,6 @@ def post_create(request):
 
 @login_required
 def post_edit(request, post_id):
-    is_edit = True
     post = get_object_or_404(Post, pk=post_id)
     form = PostForm(request.POST or None,
                     files=request.FILES or None,
@@ -99,7 +98,7 @@ def post_edit(request, post_id):
 
     context = {
         'form': form,
-        'is_edit': is_edit,
+        'is_edit': True,
     }
     return render(request, 'posts/create_post.html', context)
 
@@ -142,5 +141,6 @@ def profile_follow(request, username):
 @login_required
 def profile_unfollow(request, username):
     author = get_object_or_404(User, username=username)
-    Follow.objects.get(user=request.user, author=author).delete()
+    follower = get_object_or_404(Follow, user=request.user, author=author)
+    follower.delete()
     return redirect("posts:follow_index")

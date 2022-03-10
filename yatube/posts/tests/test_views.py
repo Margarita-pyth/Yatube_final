@@ -1,11 +1,8 @@
-
-from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
 from django.urls import reverse
 from posts.models import Post, Group
 from django import forms
-
-User = get_user_model()
+from posts.models import User
 
 
 class PostViewsTests(TestCase):

@@ -1,13 +1,12 @@
-from django.contrib.auth import get_user_model
 from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 from posts.models import Post, Group, Comment
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.conf import settings
 import tempfile
+from posts.models import User
 
 
-User = get_user_model()
 TEMP_MEDIA_ROOT = tempfile.mkdtemp(dir=settings.BASE_DIR)
 
 
@@ -56,7 +55,7 @@ class PostFormsTests(TestCase):
         """Проверка создания нового поста с картитнкой в базе данных"""
         post_count = Post.objects.count()
         form_data = {
-            'text': 'Тестовый текст',
+            'text': ['text'],
             'group': self.group.id,
             'image': self.post.image
         }
@@ -74,7 +73,7 @@ class PostFormsTests(TestCase):
         self.assertTrue(
             Post.objects.filter(
                 author=self.user,
-                text='Тестовый пост',
+                text=self.post.text,
                 group=self.group,
                 image=self.post.image
             ).exists()
@@ -84,7 +83,7 @@ class PostFormsTests(TestCase):
         """Проверка редактирования поста в базе данных"""
         post_count = Post.objects.count()
         form_data = {
-            'text': 'Тестовый текст',
+            'text': ['text'],
             'group': self.group.id
         }
         response = self.authorized_client.post(
@@ -109,7 +108,7 @@ class PostFormsTests(TestCase):
         """Неавторизованный пользователь не может создать пост."""
         post_count = Post.objects.count()
         form_data = {
-            'text': 'Тестовый текст',
+            'text': ['text'],
             'group': self.group.id,
             'image': self.post.image
         }
@@ -133,7 +132,7 @@ class PostFormsTests(TestCase):
         """Неавторизованный пользователь не может редактировать пост."""
         post_count = Post.objects.count()
         form_data = {
-            'text': 'Тестовый текст',
+            'text': ['text'],
             'group': self.group.id
         }
         response = self.guest_client.post(
@@ -177,7 +176,7 @@ class PostFormsTests(TestCase):
         """Авторизованный пользователь может оставлять комментарии."""
         comment_count = Comment.objects.count()
         form_data = {
-            'text': 'Тестовый комментарий',
+            'text': ['text'],
         }
         response = self.authorized_client.post(
             reverse('posts:add_comment', kwargs={'post_id': self.post.id}),
@@ -193,7 +192,7 @@ class PostFormsTests(TestCase):
 
         self.assertTrue(
             Comment.objects.filter(
-                text='Тестовый комментарий',
+                text=self.comment.text,
                 author=self.user,
                 post=self.post.id
             ).exists()
@@ -203,7 +202,7 @@ class PostFormsTests(TestCase):
         """Неавторизованный пользователь не может оставить комментарии."""
         comment_count = Comment.objects.count()
         form_data = {
-            'text': 'Тестовый комментраий',
+            'text': ['text'],
         }
         response = self.guest_client.post(
             reverse('posts:add_comment', kwargs={'post_id': self.post.id}),
@@ -217,7 +216,7 @@ class PostFormsTests(TestCase):
 
         self.assertTrue(
             Comment.objects.filter(
-                text='Тестовый комментарий',
+                text=self.comment.text,
                 author=self.user,
                 post=self.post.id
             ).exists())
