@@ -30,7 +30,7 @@ class Post(models.Model):
         help_text='Выберите автора'
     )
     group = models.ForeignKey(
-        Group(),
+        Group,
         models.SET_NULL,
         related_name='posts',
         blank=True,
