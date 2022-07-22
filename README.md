@@ -85,6 +85,7 @@ python3 manage.py runserver
 ```
 
 ##Plugins
+
 | GitHub | | Django |
 | toolbar | | handler |
 | Python | | test cases |
