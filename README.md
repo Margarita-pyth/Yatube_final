@@ -7,7 +7,7 @@
 - Пользователь может подписываться на других авторов и оставлять комментарии к их постам.
 - Пользователь имеет возможность изменить старый пароль на новый.
 
-- ✨Magic ✨Python
+ ✨Magic ✨Python
 
 ## Как запустить проект:
 Клонировать репозиторий и перейти в него в командной строке:
@@ -58,7 +58,7 @@ ________________________________________________________________________________
 - The user can subscribe to other authors and leave comments on their posts.
 - The user has the ability to change the old password to a new one.
 
-- ✨Magic ✨Python
+✨Magic ✨Python
 
 ## How to run the project:
 Clone the repository and change into it on the command line:
