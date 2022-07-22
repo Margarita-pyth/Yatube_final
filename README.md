@@ -19,7 +19,7 @@ cd Yatube_final
 Cоздать и активировать виртуальное окружение:
 ```sh
 python3 -m venv env
-source venv/Scripts/activate
+source env/Scripts/activate
 ```
 Установить зависимости из файла requirements.txt:
 ```sh
@@ -70,7 +70,7 @@ cd Yatube_final
 Create and activate virtual environment:
 ```sh
 python3 -m venv env
-source venv/Scripts/activate
+source env/Scripts/activate
 ```
 Install dependencies from requirements.txt file:
 ```sh
