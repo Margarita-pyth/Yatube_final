@@ -13,7 +13,7 @@
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```sh
-git clone https://github.com/Margarita-pyth/Yatube_final
+git clone https://github.com/Margarita-pyth/Yatube_final.git
 cd Yatube_final
 ```
 Cоздать и активировать виртуальное окружение:
@@ -64,7 +64,7 @@ ________________________________________________________________________________
 Clone the repository and change into it on the command line:
 
 ```sh
-git clone https://github.com/Margarita-pyth/Yatube_final
+git clone https://github.com/Margarita-pyth/Yatube_final.git
 cd Yatube_final
 ```
 Create and activate virtual environment:
