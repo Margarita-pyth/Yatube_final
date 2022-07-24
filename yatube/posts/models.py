@@ -31,7 +31,7 @@ class Post(models.Model):
     )
     group = models.ForeignKey(
         Group,
-        models.SET_NULL,
+        on_delete=models.SET_NULL,
         related_name='posts',
         blank=True,
         null=True,
